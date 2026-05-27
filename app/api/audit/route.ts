@@ -1,16 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { createAudit, runPipeline } from "@/lib/pipeline";
-import { DEFAULT_ADJUDICATOR, DEFAULT_INTERROGATOR, resolveInterrogator } from "@/lib/providers";
+import {
+  ALL_MODELS,
+  DEFAULT_ADJUDICATOR,
+  DEFAULT_INTERROGATOR,
+  SUPPORTED_TARGETS,
+  resolveInterrogator,
+} from "@/lib/providers";
 
 export const maxDuration = 300;
 
 const BodySchema = z.object({
   originalPrompt: z.string().min(1),
   targetResponse: z.string().optional(),
-  targetModel: z.string().min(1),
-  interrogatorModel: z.string().optional(),
-  adjudicatorModel: z.string().optional(),
+  targetModel: z.enum(SUPPORTED_TARGETS),
+  interrogatorModel: z.enum(ALL_MODELS).optional(),
+  adjudicatorModel: z.enum(ALL_MODELS).optional(),
 });
 
 export async function POST(req: NextRequest) {
