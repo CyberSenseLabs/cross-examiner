@@ -1,4 +1,4 @@
-# Cross-Examiner
+# LLM-Cross-Examiner
 
 This is an AI response integrity auditor. Give it a prompt and an AI-generated response — or just a prompt and it will generate the response for you — and it interrogates that response with a battery of ten structured probes, then returns a scored verdict on how well the response holds up. The tool measures three observable behaviours: **internal contradiction**, **fabrication**, and **capitulation under pressure**. It does not claim to detect intent. A model that confabulates and a model that "lies" produce the same signals, and those signals are what gets scored.
 
